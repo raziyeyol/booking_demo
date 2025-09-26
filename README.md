@@ -14,14 +14,14 @@ A modern Flutter starter showcasing **Bloc + GoRouter + GetIt + Retrofit (Dio) +
 
 ## Architecture
 ```
-lib/
-core/ # DI (GetIt), router (GoRouter), theming
-features/
-booking/
-domain/ # entities, repositories (abstractions)
-data/ # Retrofit API, repository impl, mock data source
-application/ # Bloc
-presentation/ # pages & widgets (admin grid, status pill, etc.)
+    lib/
+        core/                   # DI (GetIt), router (GoRouter), theming
+        features/
+            booking/
+                domain/         # entities, repositories (abstractions)
+                data/           # Retrofit API, repository impl, mock data source
+                application/    # Bloc
+                presentation/   # pages & widgets (admin grid, status pill, etc.)
 ```
 
 
@@ -64,6 +64,3 @@ A ready-to-use GitHub Actions workflow is included at `.github/workflows/flutter
 - `USE_MOCK=true` → use the in-memory mock data source instead of hitting the API.
 
 
-## License
-MIT (optional—add `LICENSE` file if you want)
-```
