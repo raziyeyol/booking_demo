@@ -19,9 +19,10 @@ class AdminDashboardPage extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: BlocBuilder<BookingBloc, BookingState>(
             builder: (context, state) {
-              if (state.loading)
+              if (state.loading) {
                 return const Center(child: CircularProgressIndicator());
-              if (state.error != null)
+              }
+              if (state.error != null) {
                 return Center(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -36,6 +37,7 @@ class AdminDashboardPage extends StatelessWidget {
                     ],
                   ),
                 );
+              }
 
               return LayoutBuilder(
                 builder: (context, constraints) {

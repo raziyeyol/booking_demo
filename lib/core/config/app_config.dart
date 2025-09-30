@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 class AppConfig {
   final String baseUrl;
   final bool useMock;
@@ -10,16 +8,10 @@ class AppConfig {
     const envBaseUrl = String.fromEnvironment('BASE_URL',
         defaultValue: 'https://example.com/api');
     const envUseMock = bool.fromEnvironment('USE_MOCK', defaultValue: true);
-    // In debug, prefer mock if not explicitly overridden
-    final effectiveUseMock = envUseMock;
+    const effectiveUseMock = envUseMock;
     return AppConfig(baseUrl: envBaseUrl, useMock: effectiveUseMock);
   }
 
   @override
-  String toString() =>
-      'AppConfig(baseUrl: ' +
-      baseUrl +
-      ', useMock: ' +
-      useMock.toString() +
-      ')';
+  String toString() => 'AppConfig(baseUrl: $baseUrl, useMock: $useMock)';
 }

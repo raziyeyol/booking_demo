@@ -43,7 +43,6 @@ class _CreateBookingPageState extends State<CreateBookingPage> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     DropdownButtonFormField<String>(
-                      value: _selectedServiceId,
                       decoration: const InputDecoration(labelText: 'Service'),
                       items: state.services
                           .map((s) => DropdownMenuItem(
@@ -54,6 +53,7 @@ class _CreateBookingPageState extends State<CreateBookingPage> {
                       validator: (v) =>
                           v == null ? 'Please select a service' : null,
                       onChanged: (v) => setState(() => _selectedServiceId = v),
+                      initialValue: _selectedServiceId,
                     ),
                     const SizedBox(height: 12),
                     TextFormField(
@@ -93,6 +93,7 @@ class _CreateBookingPageState extends State<CreateBookingPage> {
                                     now.add(const Duration(hours: 1))),
                               );
                               if (time == null) return;
+                              if (!mounted) return;
                               setState(() {
                                 _start = DateTime(date.year, date.month,
                                     date.day, time.hour, time.minute);
@@ -108,6 +109,7 @@ class _CreateBookingPageState extends State<CreateBookingPage> {
                       onPressed: () async {
                         if (!_formKey.currentState!.validate()) return;
                         if (_start == null) {
+                          if (!mounted) return;
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                                 content: Text('Please pick a start time')),
@@ -116,6 +118,7 @@ class _CreateBookingPageState extends State<CreateBookingPage> {
                         }
                         final start = _start!;
                         if (start.isBefore(DateTime.now())) {
+                          if (!mounted) return;
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                                 content:
