@@ -3,16 +3,15 @@ import 'dart:math';
 import 'package:booking_demo/features/booking/domain/entities.dart';
 
 class MockDataSource {
-  final _rng = Random(42);
-
   List<Service> getServices() => [
-        Service(
+        const Service(
             id: 's1',
             name: 'Haircut',
             minutes: 30,
             priceCents: 2500,
             popular: true),
-        Service(id: 's2', name: 'Coloring', minutes: 60, priceCents: 6000),
+        const Service(
+            id: 's2', name: 'Coloring', minutes: 60, priceCents: 6000),
       ];
 
   List<Booking> getBookings() {
@@ -24,7 +23,7 @@ class MockDataSource {
       return Booking(
         id: 'b$i',
         service: services[i % services.length],
-        staff: Staff(id: 't1', name: 'Alex'),
+        staff: const Staff(id: 't1', name: 'Alex'),
         slot: slot,
         note: i.isEven ? 'First-time visitor' : '',
         paymentStatus: i.isEven ? 'paid' : 'pending',
