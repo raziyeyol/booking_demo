@@ -1,7 +1,6 @@
 # booking_demo
 
-A modern Flutter starter showcasing **Bloc + GoRouter + GetIt + Retrofit (Dio) + Freezed + Build Runner**.  
-Includes a customer flow and a web-friendly admin dashboard to demonstrate real-world patterns (web hot reload, isolated widget previews, and clean data layers).
+A practical Flutter starter that balances clean architecture with real features. Powered by Bloc, GoRouter, GetIt, Retrofit (Dio), and Freezed, it includes a customer booking journey and a browser-ready admin dashboard to showcase hot reload and maintainable data layers.
 
 ---
 
