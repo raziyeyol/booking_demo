@@ -4,6 +4,7 @@ import 'package:booking_demo/features/booking/domain/repositories/booking_reposi
 import 'package:booking_demo/features/booking/presentation/widgets/status_pill.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:booking_demo/core/utils/date_formatting.dart';
 
 class AdminDashboardPage extends StatelessWidget {
   const AdminDashboardPage({super.key});
@@ -21,15 +22,30 @@ class AdminDashboardPage extends StatelessWidget {
               if (state.loading)
                 return const Center(child: CircularProgressIndicator());
               if (state.error != null)
-                return Center(child: Text('Error: ${state.error}'));
+                return Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text('Error: ' + state.error!),
+                      const SizedBox(height: 8),
+                      ElevatedButton(
+                        onPressed: () =>
+                            context.read<BookingBloc>().add(LoadInitial()),
+                        child: const Text('Retry'),
+                      ),
+                    ],
+                  ),
+                );
 
               return LayoutBuilder(
                 builder: (context, constraints) {
-                  final gridCount = constraints.maxWidth ~/ 320;
+                  final minCardWidth = 320.0;
+                  final gridCount =
+                      (constraints.maxWidth / minCardWidth).floor().clamp(1, 6);
                   final bookings = state.bookings;
                   return GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: gridCount > 1 ? gridCount : 1,
+                      crossAxisCount: gridCount,
                       mainAxisSpacing: 12,
                       crossAxisSpacing: 12,
                       childAspectRatio: 3.2,
@@ -51,11 +67,14 @@ class AdminDashboardPage extends StatelessWidget {
                                             .textTheme
                                             .titleMedium),
                                     const SizedBox(height: 6),
-                                    Text('${b.slot.start} - ${b.slot.end}',
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis),
+                                    Text(
+                                      DateFormatting.range(
+                                          b.slot.start, b.slot.end),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                                     if (b.note.isNotEmpty)
-                                      Text('Note: ${b.note}',
+                                      Text('Note: ' + b.note,
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis),
                                   ],

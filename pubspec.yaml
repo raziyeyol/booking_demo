@@ -25,6 +25,7 @@ dependencies:
   url_strategy: ^0.3.0
 
   cupertino_icons: ^1.0.2
+  sentry_flutter: ^8.6.0
 
 dev_dependencies:
   flutter_test:
@@ -34,6 +35,8 @@ dev_dependencies:
   retrofit_generator: ^9.7.0
   json_serializable: ^6.9.0
   freezed: ^2.5.7
+  mocktail: ^1.0.4
+  coverage: ^1.11.0
 
 
 flutter:

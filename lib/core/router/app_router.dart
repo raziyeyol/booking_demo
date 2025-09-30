@@ -3,6 +3,7 @@ import 'package:booking_demo/features/booking/presentation/pages/booking_list_pa
 import 'package:booking_demo/features/booking/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:booking_demo/features/booking/presentation/pages/create_booking_page.dart';
 
 GoRouter createAppRouter() => GoRouter(
       initialLocation: '/',
@@ -15,6 +16,13 @@ GoRouter createAppRouter() => GoRouter(
               path: 'bookings',
               name: 'bookings',
               builder: (context, state) => const BookingListPage(),
+              routes: [
+                GoRoute(
+                  path: 'new',
+                  name: 'booking_new',
+                  builder: (context, state) => const CreateBookingPage(),
+                ),
+              ],
             ),
             GoRoute(
               path: 'admin',

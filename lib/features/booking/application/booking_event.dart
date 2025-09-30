@@ -13,3 +13,13 @@ class MarkAsPaid extends BookingEvent {
   @override
   List<Object?> get props => [bookingId];
 }
+
+class CreateBooking extends BookingEvent {
+  final String serviceId;
+  final String staffId;
+  final DateTime start;
+  CreateBooking(
+      {required this.serviceId, required this.staffId, required this.start});
+  @override
+  List<Object?> get props => [serviceId, staffId, start];
+}

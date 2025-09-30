@@ -1,16 +1,17 @@
-import 'dart:io';
 import 'package:booking_demo/features/booking/data/api/booking_api.dart';
 import 'package:booking_demo/features/booking/data/mock/mock_data_source.dart';
 import 'package:booking_demo/features/booking/domain/entities.dart';
 import 'package:booking_demo/features/booking/domain/repositories/booking_repository.dart';
+import 'package:booking_demo/core/config/app_config.dart';
 
 class BookingRepositoryImpl implements BookingRepository {
   final BookingApi api;
+  final AppConfig config;
   final _mock = MockDataSource();
 
-  BookingRepositoryImpl({required this.api});
+  BookingRepositoryImpl({required this.api, required this.config});
 
-  bool get _useMock => Platform.environment['USE_MOCK'] == 'true';
+  bool get _useMock => config.useMock;
 
   @override
   Future<List<Service>> getServices() async {
