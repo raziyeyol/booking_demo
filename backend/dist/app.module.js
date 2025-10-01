@@ -13,6 +13,7 @@ const health_controller_1 = require("./health.controller");
 const services_module_1 = require("./services/services.module");
 const staff_module_1 = require("./staff/staff.module");
 const bookings_module_1 = require("./bookings/bookings.module");
+const auth_module_1 = require("./auth/auth.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -20,6 +21,7 @@ exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             config_1.ConfigModule.forRoot({ isGlobal: true }),
+            auth_module_1.AuthModule,
             services_module_1.ServicesModule,
             staff_module_1.StaffModule,
             bookings_module_1.BookingsModule,

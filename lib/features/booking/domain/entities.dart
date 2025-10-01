@@ -71,6 +71,18 @@ class Booking with _$Booking {
     String paymentStatus, // 'paid' | 'pending' | 'failed' | 'refunded'
   }) = _Booking;
 
-  factory Booking.fromJson(Map<String, dynamic> json) =>
-      _$BookingFromJson(json);
+  factory Booking.fromJson(Map<String, dynamic> json) {
+    // Transform API response to match our entity structure
+    return Booking(
+      id: json['id'] as String,
+      service: Service.fromJson(json['service'] as Map<String, dynamic>),
+      staff: Staff.fromJson(json['staff'] as Map<String, dynamic>),
+      slot: TimeSlot(
+        start: DateTime.parse(json['startAt'] as String),
+        end: DateTime.parse(json['endAt'] as String),
+      ),
+      note: json['note'] as String? ?? '',
+      paymentStatus: json['paymentStatus'] as String? ?? 'pending',
+    );
+  }
 }

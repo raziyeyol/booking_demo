@@ -6,8 +6,8 @@ class AppConfig {
 
   static AppConfig fromEnvironment() {
     const envBaseUrl = String.fromEnvironment('BASE_URL',
-        defaultValue: 'https://example.com/api');
-    const envUseMock = bool.fromEnvironment('USE_MOCK', defaultValue: true);
+        defaultValue: 'http://localhost:3000');
+    const envUseMock = bool.fromEnvironment('USE_MOCK', defaultValue: false);
     const effectiveUseMock = envUseMock;
     return AppConfig(baseUrl: envBaseUrl, useMock: effectiveUseMock);
   }

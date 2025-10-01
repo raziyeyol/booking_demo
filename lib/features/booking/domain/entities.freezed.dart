@@ -566,10 +566,6 @@ abstract class _TimeSlot implements TimeSlot {
       throw _privateConstructorUsedError;
 }
 
-Booking _$BookingFromJson(Map<String, dynamic> json) {
-  return _Booking.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Booking {
   String get id => throw _privateConstructorUsedError;
@@ -578,9 +574,6 @@ mixin _$Booking {
   TimeSlot get slot => throw _privateConstructorUsedError;
   String get note => throw _privateConstructorUsedError;
   String get paymentStatus => throw _privateConstructorUsedError;
-
-  /// Serializes this Booking to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of Booking
   /// with the given fields replaced by the non-null parameter values.
@@ -760,7 +753,7 @@ class __$$BookingImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$BookingImpl implements _Booking {
   const _$BookingImpl(
       {required this.id,
@@ -769,9 +762,6 @@ class _$BookingImpl implements _Booking {
       required this.slot,
       this.note = '',
       this.paymentStatus = 'pending'});
-
-  factory _$BookingImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BookingImplFromJson(json);
 
   @override
   final String id;
@@ -807,7 +797,6 @@ class _$BookingImpl implements _Booking {
                 other.paymentStatus == paymentStatus));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, service, staff, slot, note, paymentStatus);
@@ -819,13 +808,6 @@ class _$BookingImpl implements _Booking {
   @pragma('vm:prefer-inline')
   _$$BookingImplCopyWith<_$BookingImpl> get copyWith =>
       __$$BookingImplCopyWithImpl<_$BookingImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$BookingImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _Booking implements Booking {
@@ -836,8 +818,6 @@ abstract class _Booking implements Booking {
       required final TimeSlot slot,
       final String note,
       final String paymentStatus}) = _$BookingImpl;
-
-  factory _Booking.fromJson(Map<String, dynamic> json) = _$BookingImpl.fromJson;
 
   @override
   String get id;

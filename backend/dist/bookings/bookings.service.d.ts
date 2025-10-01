@@ -6,23 +6,25 @@ export declare class BookingsService {
         customerId?: string;
     }): import(".prisma/client").Prisma.PrismaPromise<({
         service: {
+            name: string;
             id: string;
             createdAt: Date;
-            updatedAt: Date;
-            name: string;
             minutes: number;
             priceCents: number;
             popular: boolean;
+            updatedAt: Date;
         };
         staff: {
+            name: string;
             id: string;
             createdAt: Date;
             updatedAt: Date;
-            name: string;
             active: boolean;
         };
     } & {
         id: string;
+        createdAt: Date;
+        updatedAt: Date;
         serviceId: string;
         staffId: string;
         customerId: string | null;
@@ -30,8 +32,6 @@ export declare class BookingsService {
         endAt: Date;
         note: string | null;
         paymentStatus: string;
-        createdAt: Date;
-        updatedAt: Date;
     })[]>;
     create(input: {
         serviceId: string;
@@ -39,23 +39,25 @@ export declare class BookingsService {
         start: Date;
     }): Promise<{
         service: {
+            name: string;
             id: string;
             createdAt: Date;
-            updatedAt: Date;
-            name: string;
             minutes: number;
             priceCents: number;
             popular: boolean;
+            updatedAt: Date;
         };
         staff: {
+            name: string;
             id: string;
             createdAt: Date;
             updatedAt: Date;
-            name: string;
             active: boolean;
         };
     } & {
         id: string;
+        createdAt: Date;
+        updatedAt: Date;
         serviceId: string;
         staffId: string;
         customerId: string | null;
@@ -63,28 +65,28 @@ export declare class BookingsService {
         endAt: Date;
         note: string | null;
         paymentStatus: string;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
     markPaid(id: string): Promise<{
         service: {
+            name: string;
             id: string;
             createdAt: Date;
-            updatedAt: Date;
-            name: string;
             minutes: number;
             priceCents: number;
             popular: boolean;
+            updatedAt: Date;
         };
         staff: {
+            name: string;
             id: string;
             createdAt: Date;
             updatedAt: Date;
-            name: string;
             active: boolean;
         };
     } & {
         id: string;
+        createdAt: Date;
+        updatedAt: Date;
         serviceId: string;
         staffId: string;
         customerId: string | null;
@@ -92,7 +94,5 @@ export declare class BookingsService {
         endAt: Date;
         note: string | null;
         paymentStatus: string;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
 }

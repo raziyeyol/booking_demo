@@ -11,25 +11,25 @@ export declare class StaffController {
     private readonly svc;
     constructor(svc: StaffService);
     list(): import(".prisma/client").Prisma.PrismaPromise<{
-        id: string;
         name: string;
-        active: boolean;
+        id: string;
         createdAt: Date;
         updatedAt: Date;
+        active: boolean;
     }[]>;
     create(dto: CreateStaffDto): import(".prisma/client").Prisma.Prisma__StaffClient<{
-        id: string;
         name: string;
-        active: boolean;
+        id: string;
         createdAt: Date;
         updatedAt: Date;
+        active: boolean;
     }, never, import("@prisma/client/runtime/library").DefaultArgs>;
     update(id: string, dto: UpdateStaffDto): import(".prisma/client").Prisma.Prisma__StaffClient<{
-        id: string;
         name: string;
-        active: boolean;
+        id: string;
         createdAt: Date;
         updatedAt: Date;
+        active: boolean;
     }, never, import("@prisma/client/runtime/library").DefaultArgs>;
 }
 export {};

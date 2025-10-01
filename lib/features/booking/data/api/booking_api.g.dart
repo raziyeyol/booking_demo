@@ -27,7 +27,7 @@ class _BookingApi implements BookingApi {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/services',
+            '/v1/services',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -47,6 +47,35 @@ class _BookingApi implements BookingApi {
   }
 
   @override
+  Future<List<Staff>> getStaff() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<List<Staff>>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/v1/staff',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<Staff> _value;
+    try {
+      _value = _result.data!
+          .map((dynamic i) => Staff.fromJson(i as Map<String, dynamic>))
+          .toList();
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
   Future<List<Booking>> getBookings() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -56,7 +85,7 @@ class _BookingApi implements BookingApi {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/bookings',
+            '/v1/bookings',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -86,7 +115,7 @@ class _BookingApi implements BookingApi {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/bookings',
+            '/v1/bookings',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -113,7 +142,7 @@ class _BookingApi implements BookingApi {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/bookings/${id}/mark-paid',
+            '/v1/bookings/${id}/mark-paid',
             queryParameters: queryParameters,
             data: _data,
           )

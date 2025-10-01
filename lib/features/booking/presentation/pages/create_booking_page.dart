@@ -14,12 +14,11 @@ class CreateBookingPage extends StatefulWidget {
 class _CreateBookingPageState extends State<CreateBookingPage> {
   final _formKey = GlobalKey<FormState>();
   String? _selectedServiceId;
-  final TextEditingController _staffIdCtrl = TextEditingController();
+  String? _selectedStaffId;
   DateTime? _start;
 
   @override
   void dispose() {
-    _staffIdCtrl.dispose();
     super.dispose();
   }
 
@@ -56,12 +55,18 @@ class _CreateBookingPageState extends State<CreateBookingPage> {
                       initialValue: _selectedServiceId,
                     ),
                     const SizedBox(height: 12),
-                    TextFormField(
-                      controller: _staffIdCtrl,
-                      decoration: const InputDecoration(labelText: 'Staff ID'),
-                      validator: (v) => (v == null || v.trim().isEmpty)
-                          ? 'Staff ID is required'
-                          : null,
+                    DropdownButtonFormField<String>(
+                      decoration: const InputDecoration(labelText: 'Staff'),
+                      items: state.staff
+                          .map((s) => DropdownMenuItem(
+                                value: s.id,
+                                child: Text(s.name),
+                              ))
+                          .toList(),
+                      validator: (v) =>
+                          v == null ? 'Please select a staff member' : null,
+                      onChanged: (v) => setState(() => _selectedStaffId = v),
+                      initialValue: _selectedStaffId,
                     ),
                     const SizedBox(height: 12),
                     InputDecorator(
@@ -129,7 +134,7 @@ class _CreateBookingPageState extends State<CreateBookingPage> {
                         final bloc = context.read<BookingBloc>();
                         bloc.add(CreateBooking(
                           serviceId: _selectedServiceId!,
-                          staffId: _staffIdCtrl.text.trim(),
+                          staffId: _selectedStaffId!,
                           start: start,
                         ));
                         await Future.delayed(const Duration(milliseconds: 300));

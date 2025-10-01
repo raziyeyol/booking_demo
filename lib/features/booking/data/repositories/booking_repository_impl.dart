@@ -15,14 +15,53 @@ class BookingRepositoryImpl implements BookingRepository {
 
   @override
   Future<List<Service>> getServices() async {
-    if (_useMock) return _mock.getServices();
-    return api.getServices();
+    if (_useMock) {
+      print('🔧 Using mock services data');
+      return _mock.getServices();
+    }
+    print('🌐 Fetching services from API: ${config.baseUrl}/v1/services');
+    try {
+      final services = await api.getServices();
+      print('✅ Loaded ${services.length} services from API');
+      return services;
+    } catch (e) {
+      print('❌ Error loading services from API: $e');
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<Staff>> getStaff() async {
+    if (_useMock) {
+      print('🔧 Using mock staff data');
+      return _mock.getStaff();
+    }
+    print('🌐 Fetching staff from API: ${config.baseUrl}/v1/staff');
+    try {
+      final staff = await api.getStaff();
+      print('✅ Loaded ${staff.length} staff members from API');
+      return staff;
+    } catch (e) {
+      print('❌ Error loading staff from API: $e');
+      rethrow;
+    }
   }
 
   @override
   Future<List<Booking>> getBookings() async {
-    if (_useMock) return _mock.getBookings();
-    return api.getBookings();
+    if (_useMock) {
+      print('🔧 Using mock bookings data');
+      return _mock.getBookings();
+    }
+    print('🌐 Fetching bookings from API: ${config.baseUrl}/v1/bookings');
+    try {
+      final bookings = await api.getBookings();
+      print('✅ Loaded ${bookings.length} bookings from API');
+      return bookings;
+    } catch (e) {
+      print('❌ Error loading bookings from API: $e');
+      rethrow;
+    }
   }
 
   @override

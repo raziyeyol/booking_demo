@@ -46,23 +46,3 @@ Map<String, dynamic> _$$TimeSlotImplToJson(_$TimeSlotImpl instance) =>
       'start': instance.start.toIso8601String(),
       'end': instance.end.toIso8601String(),
     };
-
-_$BookingImpl _$$BookingImplFromJson(Map<String, dynamic> json) =>
-    _$BookingImpl(
-      id: json['id'] as String,
-      service: Service.fromJson(json['service'] as Map<String, dynamic>),
-      staff: Staff.fromJson(json['staff'] as Map<String, dynamic>),
-      slot: TimeSlot.fromJson(json['slot'] as Map<String, dynamic>),
-      note: json['note'] as String? ?? '',
-      paymentStatus: json['paymentStatus'] as String? ?? 'pending',
-    );
-
-Map<String, dynamic> _$$BookingImplToJson(_$BookingImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'service': instance.service,
-      'staff': instance.staff,
-      'slot': instance.slot,
-      'note': instance.note,
-      'paymentStatus': instance.paymentStatus,
-    };

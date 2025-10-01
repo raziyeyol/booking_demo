@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:booking_demo/features/booking/domain/entities.dart';
 
 class MockDataSource {
@@ -12,6 +10,11 @@ class MockDataSource {
             popular: true),
         const Service(
             id: 's2', name: 'Coloring', minutes: 60, priceCents: 6000),
+      ];
+
+  List<Staff> getStaff() => [
+        const Staff(id: 't1', name: 'Alex'),
+        const Staff(id: 't2', name: 'Sarah'),
       ];
 
   List<Booking> getBookings() {
