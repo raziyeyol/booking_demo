@@ -38,6 +38,12 @@ class FakeRepo implements BookingRepository {
         .toList();
     return bookings.firstWhere((b) => b.id == bookingId);
   }
+
+  @override
+  Future<List<Staff>> getStaff() async => [
+        const Staff(id: 't1', name: 'Alex'),
+        const Staff(id: 't2', name: 'Sarah'),
+      ];
 }
 
 Future<void> waitUntilLoaded(BookingBloc bloc) async {

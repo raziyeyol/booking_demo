@@ -31,6 +31,9 @@ class FakeRepo implements BookingRepository {
   @override
   Future<Booking> markPaid(String bookingId) async =>
       throw UnimplementedError();
+
+  @override
+  Future<List<Staff>> getStaff() async => [const Staff(id: 't1', name: 'Alex')];
 }
 
 void main() {
