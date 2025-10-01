@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  role      String   @default("customer")
+  createdAt DateTime @default(now())
+  bookings  Booking[]
+}
+
+model Service {
+  id          String   @id @default(uuid())
+  name        String
+  minutes     Int
+  priceCents  Int
+  popular     Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  bookings    Booking[]
+}
+
+model Staff {
+  id        String   @id @default(uuid())
+  name      String
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  bookings  Booking[]
+}
+
+model Booking {
+  id            String   @id @default(uuid())
+  serviceId     String
+  staffId       String
+  customerId    String?
+  startAt       DateTime
+  endAt         DateTime
+  note          String?
+  paymentStatus String   @default("pending")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  service   Service @relation(fields: [serviceId], references: [id])
+  staff     Staff   @relation(fields: [staffId], references: [id])
+  customer  User?   @relation(fields: [customerId], references: [id])
+  payments  Payment[]
+
+  @@index([staffId, startAt])
+}
+
+model Payment {
+  id          String   @id @default(uuid())
+  bookingId   String
+  provider    String
+  providerId  String
+  status      String
+  amountCents Int
+  currency    String   @default("USD")
+  createdAt   DateTime @default(now())
+
+  booking Booking @relation(fields: [bookingId], references: [id])
+}
